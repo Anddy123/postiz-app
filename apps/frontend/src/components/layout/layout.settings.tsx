@@ -83,9 +83,9 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
               <div className="px-[23px] flex h-[80px] items-center justify-between z-[200] sticky top-0 bg-primary relative">
                 <Link
                   href="/"
-                  className="text-2xl flex items-center gap-[10px] text-textColor"
+                  className="text-2xl flex items-center gap-[10px] text-textColor animate-normalFadeDown"
                 >
-                  <div className="min-w-[55px]">
+                  <div className="min-w-[55px] ">
                     <Image
                       src={isGeneral ? '/postiz.svg' : '/logo.svg'}
                       width={55}
