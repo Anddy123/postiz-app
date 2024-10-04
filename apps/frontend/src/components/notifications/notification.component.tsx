@@ -99,7 +99,7 @@ const NotificationComponent = () => {
   const ref = useClickAway<HTMLDivElement>(() => setShow(false));
 
   return (
-    <div className="relative cursor-pointer select-none" ref={ref}>
+    <div className="relative cursor-pointer select-none animate-normalFadeDown" ref={ref}>
       <div onClick={changeShow}>
         {data && data.total > 0 && (
           <div className="w-[13px] h-[13px] bg-red-500 rounded-full absolute -left-[2px] -top-[2px] text-[10px] text-center flex justify-center items-center">

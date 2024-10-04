@@ -222,7 +222,7 @@ export const SettingsComponent = () => {
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="cursor-pointer relative z-[200]"
+      className="cursor-pointer relative z-[200] animate-normalFadeDown"
       onClick={openModal}
     >
       <path

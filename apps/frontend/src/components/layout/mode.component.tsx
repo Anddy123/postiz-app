@@ -16,7 +16,7 @@ const ModeComponent = () => {
   }, [mode]);
 
   return (
-    <div onClick={changeMode} className="select-none">
+    <div onClick={changeMode} className="select-none animate-normalFadeDown">
       {mode === 'dark' ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
