@@ -128,25 +128,25 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
                     )}
                   </div>
                 </Link>
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                   {user?.orgId && (user.tier !== 'FREE' || !isGeneral || !billingEnabled) ? (
                     <TopMenu />
                   ) : (
                     <div />
                   )}
                 </div>
-                <div className="flex items-center gap-[8px]">
+                <div className="hidden lg:flex items-center gap-[8px]">
                   <ModeComponent />
                   <SettingsComponent />
                   <NotificationComponent />
                   <OrganizationSelector />
                 </div>
-                <button className="md:hidden text-textColor" onClick={() => setIsOpen(!isOpen)}>
+                <button className="lg:hidden text-textColor" onClick={() => setIsOpen(!isOpen)}>
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
               </button>
-              <div className={`md:hidden absolute top-[80px] left-0 right-0 bg-primary ${isOpen ? 'block' : 'hidden'}`}>
+              <div className={`lg:hidden absolute top-[80px] left-0 right-0 bg-primary ${isOpen ? 'block' : 'hidden'}`}>
               {user?.orgId && (user.tier !== 'FREE' || !isGeneral || !billingEnabled) && <TopMenu />}
               <div className="flex flex-col items-center py-4 space-y-4">
                 <ModeComponent />

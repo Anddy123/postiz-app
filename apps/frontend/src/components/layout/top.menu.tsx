@@ -71,7 +71,7 @@ export const TopMenu: FC = () => {
 
   return (
     <div className="flex flex-col h-full animate-normalFadeDown">
-      <ul className="gap-5 flex flex-1 items-center text-[18px]">
+      <ul className="flex-col lg:flex-row gap-5 flex flex-1 items-center text-[18px]">
         {menuItems
           .filter((f) => {
             if (f.requireBilling && !billingEnabled) {
@@ -88,7 +88,7 @@ export const TopMenu: FC = () => {
                 prefetch={true}
                 href={item.path}
                 className={clsx(
-                  'flex gap-2 items-center box',
+                  'flex gap-2 items-center box md:py-2',
                   menuItems
                     .filter((f) => {
                       if (f.role) {
