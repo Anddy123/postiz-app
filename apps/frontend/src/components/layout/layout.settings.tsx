@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useCallback } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import { Title } from '@gitroom/frontend/components/layout/title';
 import { ContextWrapper } from '@gitroom/frontend/components/layout/user.context';
 import { TopMenu } from '@gitroom/frontend/components/layout/top.menu';
@@ -46,6 +46,7 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
   const fetch = useFetch();
   const {isGeneral} = useVariables();
   const {backendUrl, billingEnabled} = useVariables();
+  const [isOpen, setIsOpen] = useState(false);
   const load = useCallback(async (path: string) => {
     return await (await fetch(path)).json();
   }, []);
@@ -79,7 +80,7 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
             <ContinueProvider />
             <div className="min-h-[100vh] w-full max-w-[1440px] mx-auto bg-primary px-[12px] text-textColor flex flex-col">
               {user?.admin && <Impersonate />}
-              <div className="px-[23px] flex h-[80px] items-center justify-between z-[200] sticky top-0 bg-primary">
+              <div className="px-[23px] flex h-[80px] items-center justify-between z-[200] sticky top-0 bg-primary relative">
                 <Link
                   href="/"
                   className="text-2xl flex items-center gap-[10px] text-textColor"
@@ -127,17 +128,33 @@ export const LayoutSettings = ({ children }: { children: ReactNode }) => {
                     )}
                   </div>
                 </Link>
-                {user?.orgId && (user.tier !== 'FREE' || !isGeneral || !billingEnabled) ? (
-                  <TopMenu />
-                ) : (
-                  <div />
-                )}
+                <div className="hidden md:block">
+                  {user?.orgId && (user.tier !== 'FREE' || !isGeneral || !billingEnabled) ? (
+                    <TopMenu />
+                  ) : (
+                    <div />
+                  )}
+                </div>
                 <div className="flex items-center gap-[8px]">
                   <ModeComponent />
                   <SettingsComponent />
                   <NotificationComponent />
                   <OrganizationSelector />
                 </div>
+                <button className="md:hidden text-textColor" onClick={() => setIsOpen(!isOpen)}>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </button>
+              <div className={`md:hidden absolute top-[80px] left-0 right-0 bg-primary ${isOpen ? 'block' : 'hidden'}`}>
+              {user?.orgId && (user.tier !== 'FREE' || !isGeneral || !billingEnabled) && <TopMenu />}
+              <div className="flex flex-col items-center py-4 space-y-4">
+                <ModeComponent />
+                <SettingsComponent />
+                <NotificationComponent />
+                <OrganizationSelector />
+                </div>
+              </div>
               </div>
               <div className="flex-1 flex">
                 <div className="flex-1 rounded-3xl px-[23px] py-[17px] flex flex-col">

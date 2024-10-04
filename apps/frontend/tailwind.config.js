@@ -1,5 +1,7 @@
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 
 module.exports = {
   content: [
@@ -150,6 +152,7 @@ module.exports = {
       screens: {
         custom: { raw: '(max-height: 800px)' },
         xs: { max: '401px'} ,
+        ...defaultTheme.screens,
       },
     },
   },
